@@ -208,3 +208,7 @@ def notify(status){
     )
 }
 ```
+#####5 Finding and Managing Plugins
+######Integrating Code Coverage
+plugin->jacoco/HTML publisher
+######Publishing HTML Reports
