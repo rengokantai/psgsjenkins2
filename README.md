@@ -212,3 +212,4 @@ def notify(status){
 ######Integrating Code Coverage
 plugin->jacoco/HTML publisher
 ######Publishing HTML Reports
+pipeline->syntax->publishHTML->HTML dict(target/site/jacoco/), index(index.html),put generated gradle code before junit test
