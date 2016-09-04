@@ -46,3 +46,13 @@ POM
 ```
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
+
+######Checking out a Git Repository in a Pipeline
+version1: groovy pipeline code
+```
+git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+
+sh 'mvn -f spring-boot-samples/spring-boot-sample-atmosphere/pom.xml clean package'
+
+archiveArtifacts artifacts: 'spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar', excludes: null
+```
