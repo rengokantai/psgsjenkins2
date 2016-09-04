@@ -144,7 +144,50 @@ node{
     dir('spring-boot-samples/spring-boot-sample-atmosphere'){
     
         sh 'mvn clean package'
+        junit 'target/surefile-reports/TEST-*.xml'
+        archiveArtifacts artifacts: 'target/*.jar', excludes: null
     
+    }
+    }catch(err){
+        notify ("caught: ${err}")
+        //echo "caught: ${err}"
+        currentBuild.result = 'FAILURE'
+    }
+    notify('Done')
+}
+
+def notify(status){
+    emailext (
+      to: "you@gmail.com",
+      subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+    )
+}
+```
+######Duplicating a Job
+New item->if you want to create a new item from other existing, you can use this option:
+######Visualizing Test Results
+pipeline->syntax->general build step->publish junit test result report -> test report XMLs:
+```
+target/surefile-reports/TEST-*.xml
+```
+result:
+```
+junit 'target/surefile-reports/TEST-*.xml'
+```
+so finally our pipeline
+```
+node{
+    notify('started')
+    try{
+    stage 'ke'
+    git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+    
+    dir('spring-boot-samples/spring-boot-sample-atmosphere'){
+    
+        sh 'mvn clean package'
+        junit 'target/surefile-reports/TEST-*.xml'
         archiveArtifacts artifacts: 'target/*.jar', excludes: null
     
     }
