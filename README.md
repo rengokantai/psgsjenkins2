@@ -56,3 +56,52 @@ sh 'mvn -f spring-boot-samples/spring-boot-sample-atmosphere/pom.xml clean packa
 
 archiveArtifacts artifacts: 'spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar', excludes: null
 ```
+
+######Changing Directories in a Pipeline
+######The Master Agent Model
+generate node:Allocate node groovy syntax
+```
+node{
+
+    git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+    
+    dir('spring-boot-samples/spring-boot-sample-atmosphere'){
+    
+        sh 'mvn clean package'
+    
+        archiveArtifacts artifacts: 'target/*.jar', excludes: null
+    
+    }
+}
+```
+(failed)
+or maybe (old version 2.7.1)
+```
+node{
+
+    git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+    
+    dir('spring-boot-samples/spring-boot-sample-atmosphere'){
+    
+        sh 'mvn clean package'
+    
+        step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar', excludes: null])
+    
+    }
+}
+```
+######High-level Progress with Pipeline Stages
+```
+node{
+    stage 'ke'
+    git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+    
+    dir('spring-boot-samples/spring-boot-sample-atmosphere'){
+    
+        sh 'mvn clean package'
+    
+        archiveArtifacts artifacts: 'target/*.jar', excludes: null
+    
+    }
+}
+```
