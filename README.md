@@ -53,14 +53,20 @@ POM
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
 
-### 7 Creating Application Builds
+### 7 Peeking into the Jenkins Workspace
 For centos, project at
 ```
 /var/lib/jenkins/workspace
 ```
-### 8 App Packaging in Jenkins
+### 9 App Packaging in Jenkins
 change Build from `compile` to `package`  
 
+### 10 Archiving Artifacts
+#### 02:19
+Post-build Actions
+```
+spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar
+```
 ### 11 Cleaning up Past Builds
 in build->Invoke top-level Maven targets->Goals (clean package)  
 POM
