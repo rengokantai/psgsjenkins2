@@ -31,7 +31,7 @@ cd spring-boot-sample-atmosphere/
 compile
 centos(update 04/11/2017)
 ```
-yum install -y tree
+yum install -y java tree mvn
 mvn compile
 ```
 ```
@@ -52,6 +52,15 @@ POM
 ```
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
+
+### 7 Creating Application Builds
+For centos, project at
+```
+/var/lib/jenkins/workspace
+```
+### 8 App Packaging in Jenkins
+change Build from `compile` to `package`  
+
 ### 11 Cleaning up Past Builds
 in build->Invoke top-level Maven targets->Goals (clean package)  
 POM
