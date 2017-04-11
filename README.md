@@ -1,36 +1,45 @@
-#### psgsjenkins2
-#####2 Setting up Jenkins
-######Running Jenkins with Docker
+# psgsjenkins2
+## 2. Setting up Jenkins
+### 5 Installing
+Here he uses mac.I use CentOS.  
+step see [here](https://github.com/rengokantai/set/blob/master/README.md)
+
+
+### 9 Running Jenkins with Docker
 [jenkins docker image](hub.docker.com/r/library/jenkins)  
 use this:
 ```
-docker run -p 8080:8080 -p 50000:50000 jenkins
+docker run -p 8090:8080 -p 50000:50000 jenkins
 ```
 or
 ```
 docker run -p 8080:8080 -p 50000:50000 -v ~/:var/jenkins_home jenkins
 ```
-#####3
-######sample pj
+## 3. Creating Application Builds
+### 2 Cloning the Sample Project
 [test material](https://github.com/g0t4/jenkins2-course-spring-boot)
-
 ```
 git clone https://github.com/g0t4/jenkins2-course-spring-boot
 cd jenkins2-course-spring-boot/
 cd spring-boot-sample
 cd spring-boot-sample-atmosphere/
 ```
-######Manual Compilation with Maven
+### 3 Manual Compilation with Maven
 compile
+centos(update 04/11/2017)
+```
+yum install -y tree
+mvn compile
+```
 ```
 apt install maven openjdk-8-jdk
 mvn compile
 ```
-######Manually Testing, Packaging, and Running the App1m 43s
+### 4 Manually Testing, Packaging, and Running the App1m 43s
 ```
 mvn test
 ```
-######Compiling in Jenkins
+### 6 Compiling in Jenkins
 Build->Git repo URL
 ```
 https://github.com/g0t4/jenkins2-course-spring-boot.git
@@ -40,14 +49,14 @@ POM
 ```
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
-######Cleaning up Past Builds
+### 11 Cleaning up Past Builds
 in build->Invoke top-level Maven targets->Goals (clean package)  
 POM
 ```
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
-
-######Checking out a Git Repository in a Pipeline
+## 4. Testing and Continuous Integration
+### 5 Checking out a Git Repository in a Pipeline
 version1: groovy pipeline code
 ```
 git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
@@ -57,8 +66,8 @@ sh 'mvn -f spring-boot-samples/spring-boot-sample-atmosphere/pom.xml clean packa
 archiveArtifacts artifacts: 'spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar', excludes: null
 ```
 
-######Changing Directories in a Pipeline
-######The Master Agent Model
+### 6 Changing Directories in a Pipeline
+### 7 The Master Agent Model
 generate node:Allocate node groovy syntax
 ```
 node{
