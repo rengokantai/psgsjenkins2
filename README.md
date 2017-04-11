@@ -15,6 +15,9 @@ or
 ```
 docker run -p 8080:8080 -p 50000:50000 -v ~/:var/jenkins_home jenkins
 ```
+  
+  
+  
 ## 3. Creating Application Builds
 ### 2 Cloning the Sample Project
 [test material](https://github.com/g0t4/jenkins2-course-spring-boot)
@@ -35,7 +38,7 @@ mvn compile
 apt install maven openjdk-8-jdk
 mvn compile
 ```
-### 4 Manually Testing, Packaging, and Running the App1m 43s
+### 4 Manually Testing, Packaging, and Running the App
 ```
 mvn test
 ```
