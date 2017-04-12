@@ -68,11 +68,78 @@ Post-build Actions
 spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar
 ```
 ### 11 Cleaning up Past Builds
-in build->Invoke top-level Maven targets->Goals (clean package)  
+in build->Invoke top-level Maven targets->Goals (clean package)  
+```
+clean package
+```
 POM
 ```
 spring-boot-samples/spring-boot-sample-atmosphere/pom.xml
 ```
+### 15 Challenging
+```
+https://git.io/vKSVZ
+```
+config.xml
+```
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.5.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>ttps://github.com/g0t4/jenkins2-course-spring-boot.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Maven>
+      <targets>clean compile</targets>
+      <pom>spring-boot-samples/spring-boot-sample-atmosphere/pom.xml</pom>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+  </publishers>
+  <buildWrappers/>
+</project>
+```
+
+for centos,
+```
+cd /var/lib/jenkins/jobs
+mkdir b && cd b && vi config.xml
+```
+copy the content.Then manage Jenkins->Reload configuration from Disk  
+
 ## 4. Testing and Continuous Integration
 ### 5 Checking out a Git Repository in a Pipeline
 version1: groovy pipeline code
