@@ -141,6 +141,10 @@ mkdir b && cd b && vi config.xml
 copy the content.Then manage Jenkins->Reload configuration from Disk  
 
 ## 4. Testing and Continuous Integration
+### 3 Creating a Pipeline Job to Execute Maven
+Pipeline type.  
+check Execute concurrent builds if necessary  
+
 ### 5 Checking out a Git Repository in a Pipeline
 version1: groovy pipeline code
 ```
