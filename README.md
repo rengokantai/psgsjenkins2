@@ -144,7 +144,9 @@ copy the content.Then manage Jenkins->Reload configuration from Disk
 ### 3 Creating a Pipeline Job to Execute Maven
 Pipeline type.  
 check Execute concurrent builds if necessary  
-
+```
+step([$class: 'ArtifaceArchiver', artifacts:'sring-boot-samples/spring-boot-sample-stmosphere/target/*.jar,excludes:null])
+```
 ### 5 Checking out a Git Repository in a Pipeline
 version1: groovy pipeline code
 ```
