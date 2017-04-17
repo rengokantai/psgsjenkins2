@@ -147,14 +147,22 @@ check Execute concurrent builds if necessary
 ```
 step([$class: 'ArtifaceArchiver', artifacts:'sring-boot-samples/spring-boot-sample-stmosphere/target/*.jar,excludes:null])
 ```
+
+### 4 Archiving in a Pipeline
+```
+sh 'mvn clean package'
+def project_path = "spring-boot-samples/spring-boot-sample-atmosphere"
+archiveArtifacts artifacts: "{project_path}/target/*.jar", excludes: null
+```
+
+
 ### 5 Checking out a Git Repository in a Pipeline
 version1: groovy pipeline code
 ```
 git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
-
-sh 'mvn -f spring-boot-samples/spring-boot-sample-atmosphere/pom.xml clean package'
-
-archiveArtifacts artifacts: 'spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar', excludes: null
+sh 'mvn clean package'
+def project_path = "spring-boot-samples/spring-boot-sample-atmosphere"
+archiveArtifacts artifacts: "{project_path}/target/*.jar", excludes: null
 ```
 
 ### 6 Changing Directories in a Pipeline
