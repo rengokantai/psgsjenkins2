@@ -166,6 +166,14 @@ archiveArtifacts artifacts: "{project_path}/target/*.jar", excludes: null
 ```
 
 ### 6 Changing Directories in a Pipeline
+```
+git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+def project_path = "spring-boot-samples/spring-boot-sample-atmosphere"
+dir(project_path) {
+    sh 'mvn clean package'
+    archiveArtifacts artifacts: "target/*.jar", excludes: null
+}
+```
 ### 7 The Master Agent Model
 generate node:Allocate node groovy syntax
 ```
@@ -196,6 +204,17 @@ node{
         step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar', excludes: null])
     
     }
+}
+```
+this one passed
+```
+node{
+  git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
+  def project_path = "spring-boot-samples/spring-boot-sample-atmosphere"
+  dir(project_path) {
+      sh 'mvn clean package'
+      archiveArtifacts artifacts: "target/*.jar", excludes: null
+  }
 }
 ```
 ######High-level Progress with Pipeline Stages
