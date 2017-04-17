@@ -217,28 +217,26 @@ node{
   }
 }
 ```
-######High-level Progress with Pipeline Stages
+### 9 High-level Progress with Pipeline Stages
 ```
 node{
     stage 'ke'
     git 'https://github.com/g0t4/jenkins2-course-spring-boot.git'
-    
-    dir('spring-boot-samples/spring-boot-sample-atmosphere'){
-    
-        sh 'mvn clean package'
-    
-        archiveArtifacts artifacts: 'target/*.jar', excludes: null
-    
-    }
+  def project_path = "spring-boot-samples/spring-boot-sample-atmosphere"
+  dir(project_path) {
+      sh 'mvn clean package'
+      archiveArtifacts artifacts: "target/*.jar", excludes: null
+  }
 }
 ```
-######Triggering Automatic Builds
+### 10 Triggering Automatic Builds
 build Triggers->Build Triggers->check poll SCM(check repo in intervals)   
 syntax is similar to cron  
 ```
 * * * * *
 ```
-######Configuring an Email Server
+### 11 Configuring an Email Server
+Jenkins->configuration->Extended E-mail configuration
 mailhog
 ```
 docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d mailhog/mailhog
@@ -247,7 +245,7 @@ manage jenkins->configure->E-mail Notification->
 SMTP server (localhost)  
 SMTP port(1025)
 content type(HTML)
-######
+### 12 Email Notification in a Pipeline
 refer  
 https://gist.github.com/g0t4/747cd20e8563aefc3eac444166983142  
 ```
@@ -260,7 +258,7 @@ def notify(status){
     )
 }
 ```
-######Notifications When a Build Fails
+### 13 Notifications When a Build Fails
 ```
 node{
     notify('started')
